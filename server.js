@@ -2,10 +2,18 @@ var express = require('express');
 
 var app = express();
 
+var router = express.Router();
+
+require("./db")
+
 var port = process.env.port || 8080;
 
-app.get("/", function(req, res) {
-    res.json({ mensaje : 'Esto es un GET'})
+router.get("/", function(req, res) {
+    res.json({ mensaje : 'Esto es un GET API'})
+})
+
+router.get("/:nombre", function(req, res) {
+    res.json({ mensaje : 'Hola ' + req.params.nombre })
 })
 
 app.get("/cerveza", function(req, res) {
@@ -21,4 +29,5 @@ app.delete('/', function(req, res) {
   })
 
 app.listen(port)
+app.use("/api", router)
 console.log('API escuchando en el puerto ' + port)
