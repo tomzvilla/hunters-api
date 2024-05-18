@@ -1,0 +1,1 @@
+module.exports.ammunitionController = require('./ammunition.controller');
