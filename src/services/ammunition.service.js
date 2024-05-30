@@ -23,9 +23,12 @@ class AmmunitionService {
             const ammunitionWithArg = ammunitions.map(ammo => {
                 const supplierIds = ammo.suppliers.map(supplierId => supplierId.toString());
                 const supplier = suppliers.find(s => supplierIds.includes(s._id.toString()));
+                const unitPrice = ammo.unitPrice * 1.21 * 1.05 * 1.40;
+                const roundedUnitPrice = Math.round((unitPrice + Number.EPSILON) * 100) / 100
                 return {
                     ...ammo,
-                    argPrice: (ammo.unitPrice * supplier?.usdExchangeRate) ?? null
+                    unitPrice: roundedUnitPrice,
+                    argPrice: (unitPrice * supplier?.usdExchangeRate) ?? null
                 }
             })
             return ammunitionWithArg;
