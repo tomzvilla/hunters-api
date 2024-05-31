@@ -21,6 +21,9 @@ const envVarsSchema = Joi.object()
         DB_HOST: Joi.string().required(),
         DB_PORT: Joi.string().required(),
 
+        JWT_SECRET: Joi.string().required(),
+        JWT_REFRESH: Joi.string().required(),
+
     })
     .unknown();
 
@@ -44,7 +47,11 @@ let config = {
         database: envVars.DB_DATABASE,
         host: envVars.DB_HOST,
         port: envVars.DB_PORT,
-    }
+    },
+    jwt: {
+        secret: envVars.JWT_SECRET,
+        refresh: envVars.JWT_REFRESH,
+    },
 };
 
 module.exports = config;
