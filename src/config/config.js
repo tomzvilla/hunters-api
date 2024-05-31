@@ -24,6 +24,8 @@ const envVarsSchema = Joi.object()
         JWT_SECRET: Joi.string().required(),
         JWT_REFRESH: Joi.string().required(),
 
+        ALLOWED_ORIGINS: Joi.string(),
+
     })
     .unknown();
 
@@ -52,6 +54,7 @@ let config = {
         secret: envVars.JWT_SECRET,
         refresh: envVars.JWT_REFRESH,
     },
+    allowedOrigins: envVars.ALLOWED_ORIGINS,
 };
 
 module.exports = config;
