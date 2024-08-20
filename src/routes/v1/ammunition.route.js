@@ -12,7 +12,8 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, validate(validation.ammunitionValidation), controller.getAmmunitions)
+    .get(auth, controller.getAmmunitions)
+    .post(auth, validate(validation.ammunitionParameters), controller.createAmmunition)
     .all(methodNotAllowed);
 
 module.exports = router;

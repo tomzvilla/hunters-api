@@ -1,16 +1,8 @@
 const { Ammunition } = require('../models');
 const { Supplier } = require('../models');
+const { ServiceError } = require('./errors');
 class AmmunitionService {
-    async createAmmunition(data) {
-        try {
-            const ammunition = new Ammunition(data);
-            await ammunition.save();
-            return ammunition;
-        } catch (error) {
-            throw error;
-        }
-    }
-
+ 
     async getAmmunitions() {
         try {
             const ammunitions = await Ammunition.find()
@@ -36,6 +28,14 @@ class AmmunitionService {
         } catch (error) {
             throw error;
         }
+    }
+
+    async createAmmunition(data) {
+        const ammo = await Ammunition.findOne({ brand: data.brand, caliber: data.caliber, ammoType: data.ammoType, grammage: data.grammage, amountPerBox: data.amountPerBox }).lean();
+        if(ammo) {
+            throw new ServiceError({ code: 1409, message: 'Ammunition already exists' });
+        }
+        return await Ammunition.create(data);
     }
 
     async getAmmunitionById(id) {

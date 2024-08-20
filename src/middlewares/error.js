@@ -37,7 +37,7 @@ const errorHandler = (err, req, res, next) => {
             details: err.details.map(e => ({
                 code: e.code,
                 name: e.name,
-                message: dictOrValue(e.message)
+                message: e.message
             }))
         }),
         ...(config.env === 'development' && { stack: err.stack }),

@@ -8,7 +8,7 @@ const AmmunitionSchema = new Schema({
     ammoType: { type: Schema.Types.ObjectId, ref: 'AmmoType', required: true },
     description: { type: String, required: true },
     grammage: { type: Number, required: true },
-    ammountPerBox: { type: Number, required: true },
+    amountPerBox: { type: Number, required: true },
     unitPrice: { type: Number, required: true },
     suppliers: { type: Array, required: true },
 }, { usePushEach: true, collection: "ammunitions" });

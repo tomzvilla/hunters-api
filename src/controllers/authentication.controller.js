@@ -14,14 +14,9 @@ class AuthenticationController extends BaseController {
     }
 
     async _authenticate (req, res) {
-        try {
-            const { token, expiresIn, _id } = await this.service.authenticate(req.body);
-            const refreshExpiresIn = generateRefreshToken(_id, res);
-            res.status(httpStatus.OK).send({ token, expiresIn, refreshExpiresIn });
-        } catch (err) {
-            res.status(err.code).send(err.message);
-        }
-
+        const { token, expiresIn, _id } = await this.service.authenticate(req.body);
+        const refreshExpiresIn = generateRefreshToken(_id, res);
+        res.status(httpStatus.OK).send({ token, expiresIn, refreshExpiresIn });
     }
 
     async _refresh (req, res) {

@@ -10,7 +10,7 @@ class AmmunitionController extends BaseController {
     }
 
     get methods () {
-        return ['getAmmunitions'];
+        return ['getAmmunitions', 'createAmmunition'];
     }
 
     async _getAmmunitions (req, res) {
@@ -18,6 +18,10 @@ class AmmunitionController extends BaseController {
         res.status(httpStatus.OK).send(ammunitions);
     }
 
+    async _createAmmunition (req, res) {
+        const ammunition = await this.service.createAmmunition(req.body);
+        res.status(httpStatus.CREATED).send(ammunition);
+    }
 
 }
 
