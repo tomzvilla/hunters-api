@@ -4,3 +4,7 @@ module.exports.ammoTypeService = require('./ammoType.service');
 module.exports.brandService = require('./brand.service');
 module.exports.caliberService = require('./caliber.service');
 module.exports.authenticationService = require('./authentication.service');
+module.exports.customerService = require('./customer.service');
+module.exports.procedureTypeService = require('./procedureType.service');
+module.exports.procedureStatusService = require('./procedureStatus.service');
+module.exports.procedureService = require('./procedure.service');
