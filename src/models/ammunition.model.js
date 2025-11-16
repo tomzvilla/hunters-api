@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const auditPlugin = require('./plugins/audit.plugin');
 
 const AmmunitionSchema = new Schema({
     brand: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
@@ -12,5 +13,7 @@ const AmmunitionSchema = new Schema({
     unitPrice: { type: Number, required: true },
     suppliers: { type: Array, required: true },
 }, { usePushEach: true, collection: "ammunitions" });
+
+AmmunitionSchema.plugin(auditPlugin);
 
 module.exports = mongoose.model('Ammunition', AmmunitionSchema);

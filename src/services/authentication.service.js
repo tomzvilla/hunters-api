@@ -24,9 +24,9 @@ class AuthenticationService {
 
     async refreshToken(_id) {
         try {
-            const userDb = await User.findOne({ _id: _id }).lean();
+            const userDb = await User.findOne({ _id }).lean();
             if(!userDb) {
-                throw new Error({ status: 404, message: 'User not found' });
+                throw new ServiceError({ code: 1404, message: 'User not found' });
             }
             const { token, expiresIn } = generateToken(userDb._id);
 

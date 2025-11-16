@@ -20,7 +20,7 @@ class AuthenticationController extends BaseController {
     }
 
     async _refresh (req, res) {
-        const { token, expiresIn, _id } = await this.service.refreshToken(req._id);
+        const { token, expiresIn, _id } = await this.service.refreshToken(req.userId);
         const refreshExpiresIn = generateRefreshToken(_id, res);
         res.status(httpStatus.OK).send({ token, expiresIn, refreshExpiresIn });
     }
@@ -30,7 +30,6 @@ class AuthenticationController extends BaseController {
             httpOnly: true,
             sameSite: 'none',
             secure: true,
-        
         });
         res.status(httpStatus.OK).send();
     }

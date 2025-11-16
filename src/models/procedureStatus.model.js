@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const auditPlugin = require('./plugins/audit.plugin');
 
 const procedureStatusSchema = new Schema({
     code: { type: String, required: true, unique: true },
@@ -10,5 +11,6 @@ const procedureStatusSchema = new Schema({
     color: { type: String, required: false }
   }, { timestamps: true, collection: "states" });
 
+procedureStatusSchema.plugin(auditPlugin);
 
 module.exports = mongoose.model('ProcedureStatus', procedureStatusSchema);

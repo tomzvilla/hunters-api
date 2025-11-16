@@ -6,8 +6,8 @@ class ProcedureService {
         return procedures;
     }
 
-    async createProcedure(procedure) {
-        return await Procedure.create(procedure);
+    async createProcedure(procedure, userId) {
+        return await Procedure.createWithUser(procedure, userId);
     }
 }
 

@@ -18,7 +18,7 @@ class ProcedureController extends BaseController {
     }
 
     async _createProcedure (req, res) {
-        const procedure = await this.service.createProcedure(req.body);
+        const procedure = await this.service.createProcedure(req.body, req.userId);
         res.status(httpStatus.CREATED).send(procedure);
     }
 

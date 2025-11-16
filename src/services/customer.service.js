@@ -7,13 +7,13 @@ class CustomerService {
         return customers;
     }
 
-    async createCustomer(customer) {
+    async createCustomer(customer, userId) {
         const customerExists = await Customer.findOne({ documentNumber: customer.documentNumber }).lean();
         if(customerExists) {
             throw new ServiceError({ code: 1409, message: 'El cliente ingresado ya existe'});
         }
-        await Customer.create(customer);
-        return customer;
+        const createdCustomer = await Customer.createWithUser(customer, userId);
+        return createdCustomer;
     }
 
     async deleteCustomer(customerId) {

@@ -12,8 +12,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, controller.getBrands)
-    .post(auth, validate(validation.brandParameters), controller.createBrand)
+    .get(auth, controller.list)
+    .post(auth, validate(validation.create), controller.create)
+    .all(methodNotAllowed);
+
+router
+    .route('/:brandId')
+    .put(auth, validate(validation.update), controller.update)
     .all(methodNotAllowed);
 
 module.exports = router;

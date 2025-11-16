@@ -19,7 +19,7 @@ class CustomerController extends BaseController {
     }
 
     async _createCustomer(req, res) {
-        const customer = await this.service.createCustomer(req.body);
+        const customer = await this.service.createCustomer(req.body, req.userId);
         res.status(httpStatus.CREATED).send(customer);
     }
 

@@ -1,21 +1,9 @@
 const { AmmoType } = require('../models');
-const { ServiceError } = require('./errors')
+const BaseService = require('./base.service');
 
-class AmmoTypeService {
-    async getAmmoTypes() {
-        const ammoTypes = await AmmoType.find().lean();
-        return ammoTypes;
-    }
-
-    async createAmmoType(data) {
-        const ammoTypeExists = await AmmoType.find({ type: data.type }).lean();
-        if(ammoTypeExists.length) {
-            throw new ServiceError({ code: 1409, message: 'Ese tipo de munición ya existe'})
-        }
-        const ammoType = new AmmoType(data);
-        await ammoType.save();
-        return ammoType;
-        
+class AmmoTypeService extends BaseService {
+    constructor() {
+        super(AmmoType);
     }
 }
 

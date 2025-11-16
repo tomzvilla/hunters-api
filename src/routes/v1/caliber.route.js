@@ -12,8 +12,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, controller.getCalibers)
-    .post(auth, validate(validation.caliberParameters), controller.createCaliber)
+    .get(auth, controller.list)
+    .post(auth, validate(validation.create), controller.create)
+    .all(methodNotAllowed);
+
+router
+    .route('/:caliberId')
+    .put(auth, validate(validation.update), controller.update)
     .all(methodNotAllowed);
 
 module.exports = router;

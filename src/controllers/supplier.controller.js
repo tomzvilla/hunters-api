@@ -9,21 +9,6 @@ class SupplierController extends BaseController {
         super(service, validation);
     }
 
-    get methods () {
-        return ['getSuppliers', 'updateSupplier'];
-    }
-
-    async _getSuppliers (req, res) {
-        const suppliers = await this.service.getSuppliers();
-        res.status(httpStatus.OK).send(suppliers);
-    }
-
-    async _updateSupplier (req, res) {
-        await this.service.updateSupplier(req.body);
-        res.status(httpStatus.OK).send();
-    }
-
-
 }
 
 module.exports = new SupplierController();

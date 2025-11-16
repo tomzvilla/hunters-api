@@ -12,8 +12,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, controller.getSuppliers)
-    .post(auth, validate(validation.supplierParameters), controller.updateSupplier)
+    .get(auth, controller.list)
+    .post(auth, validate(validation.create), controller.create)
+    .all(methodNotAllowed);
+
+router
+    .route('/:supplierId')
+    .put(auth, validate(validation.update), controller.update)
     .all(methodNotAllowed);
 
 module.exports = router;

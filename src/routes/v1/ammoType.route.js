@@ -12,8 +12,13 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(auth, controller.getAmmoTypes)
-    .post(auth, validate(validation.ammoTypeParameters), controller.createAmmoType)
+    .get(auth, controller.list)
+    .post(auth, validate(validation.create), controller.create)
+    .all(methodNotAllowed);
+
+router
+    .route('/:ammoTypeId')
+    .put(auth, validate(validation.update), controller.update)
     .all(methodNotAllowed);
 
 module.exports = router;

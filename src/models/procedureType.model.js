@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
+const auditPlugin = require('./plugins/audit.plugin');
 
 const SubtypeSchema = new Schema({
     code: { type: String, required: true },
@@ -13,5 +14,7 @@ const ProcedureTypeSchema = new Schema({
     name: { type: String, required: false },
     subtypes: [SubtypeSchema]
 }, { usePushEach: true, collection: "procedureTypes" });
+
+ProcedureTypeSchema.plugin(auditPlugin);
 
 module.exports = mongoose.model('ProcedureType', ProcedureTypeSchema);

@@ -9,7 +9,7 @@ const requireRefreshToken = (req, res, next) => {
     }
 
     const { _id } = jwt.verify(refreshTokenCookie, config.jwt.refresh);
-    req._id = _id;
+    req.userId = _id;
 
     next();
   } catch (error) {
