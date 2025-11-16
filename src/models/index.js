@@ -4,7 +4,3 @@ module.exports.Caliber = require('./caliber.model');
 module.exports.AmmoType = require('./ammoType.model');
 module.exports.Supplier = require('./supplier.model');
 module.exports.User = require('./user.model');
-module.exports.Customer = require('./customer.model');
-module.exports.ProcedureType = require('./procedureType.model');
-module.exports.ProcedureStatus = require('./procedureStatus.model');
-module.exports.Procedure = require('./procedure.model');

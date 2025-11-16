@@ -4,7 +4,3 @@ module.exports.ammoTypeController = require('./ammoType.controller');
 module.exports.brandController = require('./brand.controller');
 module.exports.caliberController = require('./caliber.controller');
 module.exports.authenticationController = require('./authentication.controller');
-module.exports.customerController = require('./customer.controller');
-module.exports.procedureTypeController = require('./procedureType.controller');
-module.exports.procedureStatusController = require('./procedureStatus.controller');
-module.exports.procedureController = require('./procedure.controller');
