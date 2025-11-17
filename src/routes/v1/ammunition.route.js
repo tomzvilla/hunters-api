@@ -16,4 +16,10 @@ router
     .post(auth, validate(validation.create), controller.create)
     .all(methodNotAllowed);
 
+router
+    .route('/:ammunitionId')
+    .get(auth, controller.get)
+    .put(auth, validate(validation.update), controller.update)
+    .all(methodNotAllowed);
+
 module.exports = router;
